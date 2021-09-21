@@ -701,6 +701,11 @@ ifeq ($(DYN_DISABLE_AUTH), 1)
     endif
 endif
 
+# OPTEE_DTB can be set to include OP-TEE in the device tree
+ifeq ($(OPTEE_DTB),1)
+    $(info "#### [INLUDING OP-TEE IN DEVICE TREE] ###")
+endif
+
 # SDEI_IN_FCONF is only supported when SDEI_SUPPORT is enabled.
 ifeq ($(SDEI_SUPPORT)-$(SDEI_IN_FCONF),0-1)
 $(error "SDEI_IN_FCONF is an experimental feature and is only supported when \
@@ -947,6 +952,7 @@ $(eval $(call assert_booleans,\
         USE_COHERENT_MEM \
         USE_DEBUGFS \
         ARM_IO_IN_DTB \
+        OPTEE_DTB \
         SDEI_IN_FCONF \
         SEC_INT_DESC_IN_FCONF \
         USE_ROMLIB \
@@ -1043,6 +1049,7 @@ $(eval $(call add_defines,\
         USE_COHERENT_MEM \
         USE_DEBUGFS \
         ARM_IO_IN_DTB \
+        OPTEE_DTB \
         SDEI_IN_FCONF \
         SEC_INT_DESC_IN_FCONF \
         USE_ROMLIB \
