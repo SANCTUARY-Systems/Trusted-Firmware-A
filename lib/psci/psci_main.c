@@ -29,11 +29,6 @@ int psci_cpu_on(u_register_t target_cpu,
 	int rc;
 	entry_point_info_t ep;
 
-	ERROR("TEEEEEEEEEEEEEEEEEEEEEEEEEST\n");
-	ERROR("target_cpu: %lx\n", target_cpu);
-	ERROR("entrypoint: %lx\n", entrypoint);
-	ERROR("context_id: %lx\n", context_id);
-
 	/* Determine if the cpu exists of not */
 	rc = psci_validate_mpidr(target_cpu);
 	if (rc != PSCI_E_SUCCESS)
