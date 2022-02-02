@@ -1065,6 +1065,8 @@ $(eval $(call add_defines,\
         USE_SP804_TIMER \
         ENABLE_FEAT_RNG \
         ENABLE_FEAT_SB \
+        MEM_LAYOUT_PRINT \
+        BL33_START_ADDR \
 )))
 
 ifeq (${SANITIZE_UB},trap)
