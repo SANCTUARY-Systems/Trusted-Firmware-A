@@ -1067,6 +1067,7 @@ $(eval $(call add_defines,\
         ENABLE_FEAT_SB \
         MEM_LAYOUT_PRINT \
         BL33_START_ADDR \
+        BL33_EXTRA1_START_ADDR \
 )))
 
 ifeq (${SANITIZE_UB},trap)
@@ -1185,6 +1186,7 @@ endif
 # Add the BL33 image if required by the platform
 ifeq (${NEED_BL33},yes)
 $(eval $(call TOOL_ADD_IMG,bl33,--nt-fw))
+$(eval $(call TOOL_ADD_IMG,bl33_extra1,--nt-fw-extra1))
 endif
 
 ifeq (${NEED_BL2U},yes)

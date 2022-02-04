@@ -58,6 +58,7 @@ const io_uuid_spec_t arm_uuid_spec[MAX_NUMBER_IDS] = {
 	[BL32_EXTRA1_IMAGE_ID] = {UUID_SECURE_PAYLOAD_BL32_EXTRA1},
 	[BL32_EXTRA2_IMAGE_ID] = {UUID_SECURE_PAYLOAD_BL32_EXTRA2},
 	[BL33_IMAGE_ID] = {UUID_NON_TRUSTED_FIRMWARE_BL33},
+	[BL33_EXTRA1_IMAGE_ID] = {UUID_NON_TRUSTED_FIRMWARE_BL33_EXTRA1},
 	[HW_CONFIG_ID] = {UUID_HW_CONFIG},
 	[SOC_FW_CONFIG_ID] = {UUID_SOC_FW_CONFIG},
 	[TOS_FW_CONFIG_ID] = {UUID_TOS_FW_CONFIG},
@@ -141,6 +142,11 @@ struct plat_io_policy policies[MAX_NUMBER_IDS] = {
 	[BL33_IMAGE_ID] = {
 		&fip_dev_handle,
 		(uintptr_t)&arm_uuid_spec[BL33_IMAGE_ID],
+		open_fip
+	},
+	[BL33_EXTRA1_IMAGE_ID] = {
+		&fip_dev_handle,
+		(uintptr_t)&arm_uuid_spec[BL33_EXTRA1_IMAGE_ID],
 		open_fip
 	},
 	[HW_CONFIG_ID] = {
@@ -256,6 +262,7 @@ static const struct policies_load_info load_info[FCONF_ARM_IO_UUID_NUMBER] = {
 	{BL32_EXTRA1_IMAGE_ID, "bl32_extra1_uuid"},
 	{BL32_EXTRA2_IMAGE_ID, "bl32_extra2_uuid"},
 	{BL33_IMAGE_ID, "bl33_uuid"},
+	{BL33_EXTRA1_IMAGE_ID, "bl33_extra1_uuid"},
 	{HW_CONFIG_ID, "hw_cfg_uuid"},
 	{SOC_FW_CONFIG_ID, "soc_fw_cfg_uuid"},
 	{TOS_FW_CONFIG_ID, "tos_fw_cfg_uuid"},

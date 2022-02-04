@@ -63,6 +63,8 @@ static auth_param_type_desc_t nt_world_bl_hash = AUTH_PARAM_TYPE_DESC(
 		AUTH_PARAM_HASH, NON_TRUSTED_WORLD_BOOTLOADER_HASH_OID);
 static auth_param_type_desc_t nt_fw_config_hash = AUTH_PARAM_TYPE_DESC(
 		AUTH_PARAM_HASH, NON_TRUSTED_FW_CONFIG_HASH_OID);
+static auth_param_type_desc_t nt_world_bl_extra1_hash = AUTH_PARAM_TYPE_DESC(
+		AUTH_PARAM_HASH, NON_TRUSTED_WORLD_BOOTLOADER_EXTRA1_HASH_OID);
 #if defined(SPD_spmd)
 static auth_param_type_desc_t sp_pkg1_hash = AUTH_PARAM_TYPE_DESC(
 		AUTH_PARAM_HASH, SP_PKG1_HASH_OID);
@@ -519,6 +521,13 @@ static const auth_img_desc_t non_trusted_fw_content_cert = {
 			}
 		},
 		[1] = {
+			.type_desc = &nt_world_bl_extra1_hash,
+			.data = {
+				.ptr = (void *)nt_world_bl_extra1_hash_buf,
+				.len = (unsigned int)HASH_DER_LEN
+			}
+		},
+		[2] = {
 			.type_desc = &nt_fw_config_hash,
 			.data = {
 				.ptr = (void *)nt_fw_config_hash_buf,
@@ -537,6 +546,20 @@ static const auth_img_desc_t bl33_image = {
 			.param.hash = {
 				.data = &raw_data,
 				.hash = &nt_world_bl_hash
+			}
+		}
+	}
+};
+static const auth_img_desc_t bl33_extra1_image = {
+	.img_id = BL33_EXTRA1_IMAGE_ID,
+	.img_type = IMG_RAW,
+	.parent = &non_trusted_fw_content_cert,
+	.img_auth_methods = (const auth_method_desc_t[AUTH_METHOD_NUM]) {
+		[0] = {
+			.type = AUTH_METHOD_HASH,
+			.param.hash = {
+				.data = &raw_data,
+				.hash = &nt_world_bl_extra1_hash
 			}
 		}
 	}
@@ -670,6 +693,7 @@ static const auth_img_desc_t * const cot_desc[] = {
 	[NON_TRUSTED_FW_KEY_CERT_ID]		=	&non_trusted_fw_key_cert,
 	[NON_TRUSTED_FW_CONTENT_CERT_ID]	=	&non_trusted_fw_content_cert,
 	[BL33_IMAGE_ID]				=	&bl33_image,
+	[BL33_EXTRA1_IMAGE_ID]			=	&bl33_extra1_image,
 	[NT_FW_CONFIG_ID]			=	&nt_fw_config,
 #if defined(SPD_spmd)
 	[SIP_SP_CONTENT_CERT_ID]		=	&sip_sp_content_cert,

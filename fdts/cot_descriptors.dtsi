@@ -243,6 +243,12 @@ cot {
 			parent = <&non_trusted_fw_content_cert>;
 			hash = <&nt_world_bl_hash>;
 		};
+		
+		bl33_extra1_image {
+			image-id = <BL33_EXTRA1_IMAGE_ID>;
+			parent = <&non_trusted_fw_content_cert>;
+			hash = <&nt_world_bl_extra1_hash>;
+		};
 
 		nt_fw_config {
 			image-id = <NT_FW_CONFIG_ID>;

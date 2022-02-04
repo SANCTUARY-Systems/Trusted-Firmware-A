@@ -186,6 +186,26 @@ static bl_mem_params_node_t bl2_mem_params_descs[] = {
 
 	    .next_handoff_image_id = INVALID_IMAGE_ID,
     },
+
+	/*
+	 * Fill BL33 external 1 related information.
+	 * We use this for the U-Boot command script.
+	 */
+    {
+	    .image_id = BL33_EXTRA1_IMAGE_ID,
+
+	    SET_STATIC_PARAM_HEAD(ep_info, PARAM_EP,
+		    VERSION_2, entry_point_info_t, NON_SECURE | NON_EXECUTABLE),
+
+	    SET_STATIC_PARAM_HEAD(image_info, PARAM_EP,
+		    VERSION_2, image_info_t, 0),
+	    .image_info.image_base = BL33_EXTRA1_START_ADDR,
+	    .image_info.image_max_size = ARM_DRAM1_BASE + ARM_DRAM1_SIZE
+			- BL33_EXTRA1_START_ADDR,
+
+	    .next_handoff_image_id = INVALID_IMAGE_ID,
+    },
+
 	/* Fill NT_FW_CONFIG related information */
     {
 	    .image_id = NT_FW_CONFIG_ID,

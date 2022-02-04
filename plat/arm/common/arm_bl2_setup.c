@@ -184,6 +184,7 @@ int arm_bl2_handle_post_image_load(unsigned int image_id)
 	bl_mem_params_node_t *pager_mem_params = NULL;
 	bl_mem_params_node_t *paged_mem_params = NULL;
 #endif
+	//bl_mem_params_node_t *bl33_extra1_mem_params = NULL;
 	assert(bl_mem_params != NULL);
 
 	switch (image_id) {
@@ -208,6 +209,9 @@ int arm_bl2_handle_post_image_load(unsigned int image_id)
 #endif
 
 	case BL33_IMAGE_ID:
+		//bl33_extra1_mem_params = get_bl_mem_params_node(BL32_EXTRA1_IMAGE_ID);
+		//assert(bl33_extra1_mem_params);
+
 		/* BL33 expects to receive the primary CPU MPID (through r0) */
 		bl_mem_params->ep_info.args.arg0 = 0xffff & read_mpidr();
 		bl_mem_params->ep_info.spsr = arm_get_spsr_for_bl33_entry();

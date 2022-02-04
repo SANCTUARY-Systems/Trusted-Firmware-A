@@ -91,7 +91,10 @@
 /* FW_CONFIG */
 #define FW_CONFIG_ID			U(31)
 
+/* Non-Trusted Firmware BL33_EXTRA1 */
+#define BL33_EXTRA1_IMAGE_ID		U(32)
+
 /* Max Images */
-#define MAX_IMAGE_IDS			U(32)
+#define MAX_IMAGE_IDS			U(33)
 
 #endif /* ARM_TRUSTED_FIRMWARE_EXPORT_COMMON_TBBR_TBBR_IMG_DEF_EXP_H */
