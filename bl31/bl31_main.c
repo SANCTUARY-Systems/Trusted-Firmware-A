@@ -123,6 +123,18 @@ void bl31_main(void)
 	NOTICE("BL31: %s\n", version_string);
 	NOTICE("BL31: %s\n", build_message);
 
+#if MEM_LAYOUT_PRINT
+	NOTICE("***** Memory Layout Information *****\n");
+	NOTICE("BL32_BASE: 0x%lx\n", BL32_BASE);
+	NOTICE("BL32_LIMIT: 0x%lx\n", BL32_LIMIT);
+	NOTICE("PLAT_ARM_TRUSTED_DRAM_BASE: 0x%lx\n", PLAT_ARM_TRUSTED_DRAM_BASE);
+	NOTICE("ARM_NS_DRAM1_BASE: 0x%llx\n", ARM_NS_DRAM1_BASE);
+	NOTICE("ARM_NS_DRAM1_END: 0x%llx\n", ARM_NS_DRAM1_END);
+	NOTICE("PLAT_ARM_NS_IMAGE_BASE: 0x%x\n", PLAT_ARM_NS_IMAGE_BASE);
+	NOTICE("DRAM1_NS_IMAGE_LIMIT: 0x%x\n", PLAT_ARM_NS_IMAGE_BASE + (32 << TWO_MB_SHIFT));
+	NOTICE("NS_BL2U_BASE: 0x%llx\n", NS_BL2U_BASE);
+#endif
+
 #ifdef SUPPORT_UNKNOWN_MPID
 	if (unsupported_mpid_flag == 0) {
 		NOTICE("Unsupported MPID detected!\n");

@@ -68,6 +68,7 @@ static const struct uuidnames uuidnames[] = {
 	{"ns-bl2u.bin",		UUID_TRUSTED_UPDATE_FIRMWARE_NS_BL2U},
 	{"bl32-xtr1.bin",	UUID_SECURE_PAYLOAD_BL32_EXTRA1},
 	{"bl32-xtr2.bin",	UUID_SECURE_PAYLOAD_BL32_EXTRA2},
+	{"bl33-xtr1.bin",	UUID_NON_TRUSTED_FIRMWARE_BL33_EXTRA1},
 	{"hw.cfg",		UUID_HW_CONFIG},
 	{"tb-fw.cfg",		UUID_TB_FW_CONFIG},
 	{"soc-fw.cfg",		UUID_SOC_FW_CONFIG},

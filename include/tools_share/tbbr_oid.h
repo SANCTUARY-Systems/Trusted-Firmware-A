@@ -145,8 +145,10 @@
 
 /* NonTrustedWorldBootloaderHash - BL33 */
 #define NON_TRUSTED_WORLD_BOOTLOADER_HASH_OID	"1.3.6.1.4.1.4128.2100.1201"
+/* NonTrustedWorldBootloaderExtra1Hash - BL33 */
+#define NON_TRUSTED_WORLD_BOOTLOADER_EXTRA1_HASH_OID	"1.3.6.1.4.1.4128.2100.1202"
 /* NonTrustedFirmwareConfigHash - NT_FW_CONFIG */
-#define NON_TRUSTED_FW_CONFIG_HASH_OID		"1.3.6.1.4.1.4128.2100.1202"
+#define NON_TRUSTED_FW_CONFIG_HASH_OID		"1.3.6.1.4.1.4128.2100.1203"
 
 /*
  * Secure Partitions Content Certificate

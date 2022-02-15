@@ -267,6 +267,9 @@ USE_DEBUGFS			:= 0
 # Build option to fconf based io
 ARM_IO_IN_DTB			:= 0
 
+# Build option to include OP-TEE in device tree
+OPTEE_DTB			:= 0
+
 # Build option to support SDEI through fconf
 SDEI_IN_FCONF			:= 0
 

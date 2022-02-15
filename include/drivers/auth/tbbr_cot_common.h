@@ -12,6 +12,7 @@
 extern unsigned char tb_fw_hash_buf[HASH_DER_LEN];
 extern unsigned char scp_fw_hash_buf[HASH_DER_LEN];
 extern unsigned char nt_world_bl_hash_buf[HASH_DER_LEN];
+extern unsigned char nt_world_bl_extra1_hash_buf[HASH_DER_LEN];
 
 extern auth_param_type_desc_t trusted_nv_ctr;
 extern auth_param_type_desc_t subject_pk;

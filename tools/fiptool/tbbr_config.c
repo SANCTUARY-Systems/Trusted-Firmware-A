@@ -68,6 +68,11 @@ toc_entry_t toc_entries[] = {
 		.cmdline_name = "nt-fw"
 	},
 	{
+		.name = "Non-Trusted Firmware BL33 Extra1",
+		.uuid = UUID_NON_TRUSTED_FIRMWARE_BL33_EXTRA1,
+		.cmdline_name = "nt-fw-extra1"
+	},
+	{
 		.name = "Realm Monitor Management Firmware",
 		.uuid = UUID_REALM_MONITOR_MGMT_FIRMWARE,
 		.cmdline_name = "rmm-fw"

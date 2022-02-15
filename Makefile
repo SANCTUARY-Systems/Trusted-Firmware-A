@@ -402,7 +402,11 @@ ASFLAGS			+=	$(CPPFLAGS) $(ASFLAGS_$(ARCH))			\
 TF_CFLAGS		+=	$(CPPFLAGS) $(TF_CFLAGS_$(ARCH))		\
 				-ffunction-sections -fdata-sections		\
 				-ffreestanding -fno-builtin -fno-common		\
-				-Os -std=gnu99
+				-std=gnu99
+
+ifneq ($(DBG_SYMBOLS),y)
+TF_CFLAGS += -Os
+endif
 
 ifeq (${SANITIZE_UB},on)
 TF_CFLAGS		+=	-fsanitize=undefined -fno-sanitize-recover
@@ -416,14 +420,20 @@ GCC_V_OUTPUT		:=	$(shell $(CC) -v 2>&1)
 
 # LD = armlink
 ifneq ($(findstring armlink,$(notdir $(LD))),)
-TF_LDFLAGS		+=	--diag_error=warning --lto_level=O1
+TF_LDFLAGS		+=	--diag_error=warning
+ifneq ($(DBG_SYMBOLS),y)
+TF_LDFLAGS		+=	--lto_level=O1
+endif
 TF_LDFLAGS		+=	--remove --info=unused,unusedsymbols
 TF_LDFLAGS		+=	$(TF_LDFLAGS_$(ARCH))
 
 # LD = gcc (used when GCC LTO is enabled)
 else ifneq ($(findstring gcc,$(notdir $(LD))),)
 # Pass ld options with Wl or Xlinker switches
-TF_LDFLAGS		+=	-Wl,--fatal-warnings -O1
+TF_LDFLAGS		+=	-Wl,--fatal-warnings
+ifneq ($(DBG_SYMBOLS),y)
+TF_LDFLAGS		+=	-O1
+endif
 TF_LDFLAGS		+=	-Wl,--gc-sections
 ifeq ($(ENABLE_LTO),1)
 	ifeq (${ARCH},aarch64)
@@ -440,7 +450,10 @@ TF_LDFLAGS		+=	$(subst --,-Xlinker --,$(TF_LDFLAGS_$(ARCH)))
 
 # LD = gcc-ld (ld) or llvm-ld (ld.lld) or other
 else
-TF_LDFLAGS		+=	--fatal-warnings -O1
+TF_LDFLAGS		+=	--fatal-warnings
+ifneq ($(DBG_SYMBOLS),y)
+TF_LDFLAGS		+=	-O1
+endif
 TF_LDFLAGS		+=	--gc-sections
 # ld.lld doesn't recognize the errata flags,
 # therefore don't add those in that case
@@ -730,6 +743,12 @@ endif
 ifeq ($(SDEI_SUPPORT)-$(SDEI_IN_FCONF),0-1)
 $(error "SDEI_IN_FCONF is only supported when SDEI_SUPPORT is enabled")
 endif
+
+# OPTEE_DTB can be set to include OP-TEE in the device tree
+ifeq ($(OPTEE_DTB),1)
+     $(info "#### [INLUDING OP-TEE IN DEVICE TREE] ###")
+endif
+
 
 # If pointer authentication is used in the firmware, make sure that all the
 # registers associated to it are also saved and restored.
@@ -1041,6 +1060,7 @@ $(eval $(call assert_booleans,\
         ENABLE_FEAT_HCX \
         ENABLE_MPMM \
         ENABLE_MPMM_FCONF \
+	OPTEE_DTB \
 )))
 
 $(eval $(call assert_numerics,\
@@ -1153,6 +1173,10 @@ $(eval $(call add_defines,\
         ENABLE_FEAT_HCX \
         ENABLE_MPMM \
         ENABLE_MPMM_FCONF \
+	OPTEE_DTB \
+	MEM_LAYOUT_PRINT \
+	BL33_START_ADDR \
+	BL33_EXTRA1_START_ADDR \
 )))
 
 ifeq (${SANITIZE_UB},trap)
@@ -1283,6 +1307,7 @@ endif
 # Add the BL33 image if required by the platform
 ifeq (${NEED_BL33},yes)
 $(eval $(call TOOL_ADD_IMG,bl33,--nt-fw))
+$(eval $(call TOOL_ADD_IMG,bl33_extra1,--nt-fw-extra1))
 endif
 
 ifeq (${NEED_BL2U},yes)

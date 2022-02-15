@@ -104,7 +104,10 @@
 /* Realm Monitor Manager (RMM) */
 #define RMM_IMAGE_ID			U(34)
 
+/* Non-Trusted Firmware BL33_EXTRA1 */
+#define BL33_EXTRA1_IMAGE_ID		U(35)
+
 /* Max Images */
-#define MAX_IMAGE_IDS			U(35)
+#define MAX_IMAGE_IDS			U(36)
 
 #endif /* ARM_TRUSTED_FIRMWARE_EXPORT_COMMON_TBBR_TBBR_IMG_DEF_EXP_H */

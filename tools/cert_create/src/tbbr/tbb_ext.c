@@ -203,6 +203,15 @@ static ext_t tbb_ext[] = {
 		.asn1_type = V_ASN1_OCTET_STRING,
 		.type = EXT_TYPE_HASH
 	},
+	[NON_TRUSTED_WORLD_BOOTLOADER_EXTRA1_HASH_EXT] = {
+		.oid = NON_TRUSTED_WORLD_BOOTLOADER_EXTRA1_HASH_OID,
+		.opt = "nt-fw-extra1",
+		.help_msg = "Non-Trusted World Bootloader Extra1 image file",
+		.sn = "NonTrustedWorldBootloaderExtra1Hash",
+		.ln = "Non-Trusted World Extra1 hash (SHA256)",
+		.asn1_type = V_ASN1_OCTET_STRING,
+		.type = EXT_TYPE_HASH,
+	},
 	[NON_TRUSTED_FW_CONFIG_HASH_EXT] = {
 		.oid = NON_TRUSTED_FW_CONFIG_HASH_OID,
 		.opt = "nt-fw-config",

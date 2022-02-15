@@ -48,8 +48,14 @@
 		max-pwr-lvl = <2>;
 	};
 
-#if SDEI_IN_FCONF || SEC_INT_DESC_IN_FCONF
+#if SDEI_IN_FCONF || SEC_INT_DESC_IN_FCONF || OPTEE_DTB
 	firmware {
+#if OPTEE_DTB
+		optee {
+			compatible = "linaro,optee-tz";
+			method = "smc";
+		};
+#endif
 #if SDEI_IN_FCONF
 		sdei {
 			compatible = "arm,sdei-1.0";
@@ -100,7 +106,7 @@
 		};
 #endif /* SEC_INT_DESC_IN_FCONF */
 	};
-#endif /* SDEI_IN_FCONF || SEC_INT_DESC_IN_FCONF */
+#endif /* SDEI_IN_FCONF || SEC_INT_DESC_IN_FCONF || TFA_INCLUDE_OPTEE */
 
 	cpus {
 		#address-cells = <2>;

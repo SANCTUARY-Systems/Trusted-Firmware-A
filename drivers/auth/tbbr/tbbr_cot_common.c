@@ -29,6 +29,7 @@ static unsigned char hw_config_hash_buf[HASH_DER_LEN];
 unsigned char tb_fw_hash_buf[HASH_DER_LEN];
 unsigned char scp_fw_hash_buf[HASH_DER_LEN];
 unsigned char nt_world_bl_hash_buf[HASH_DER_LEN];
+unsigned char nt_world_bl_extra1_hash_buf[HASH_DER_LEN];
 
 /*
  * common Parameter type descriptors across BL1 and BL2

@@ -29,6 +29,10 @@ int psci_cpu_on(u_register_t target_cpu,
 	int rc;
 	entry_point_info_t ep;
 
+	/* !ES! */
+	NOTICE("Perform PSCI CPU ON call:  target_cpu 0x%lx, entrypoint 0x%lx, context_id 0x%lx\n",
+			target_cpu, entrypoint, context_id);
+
 	/* Determine if the cpu exists of not */
 	rc = psci_validate_mpidr(target_cpu);
 	if (rc != PSCI_E_SUCCESS)
