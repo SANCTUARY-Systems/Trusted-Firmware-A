@@ -673,6 +673,21 @@ static const auth_img_desc_t bl33_image = {
 	}
 };
 
+static const auth_img_desc_t bl33_extra1_image = {
+	.img_id = BL33_EXTRA1_IMAGE_ID,
+	.img_type = IMG_RAW,
+	.parent = &non_trusted_fw_content_cert,
+	.img_auth_methods = (const auth_method_desc_t[AUTH_METHOD_NUM]) {
+		[0] = {
+			.type = AUTH_METHOD_HASH,
+			.param.hash = {
+				.data = &raw_data,
+				.hash = &nt_world_bl_extra1_hash
+			}
+		}
+	}
+};
+
 /* NT FW Config */
 static const auth_img_desc_t nt_fw_config = {
 	.img_id = NT_FW_CONFIG_ID,
@@ -939,6 +954,7 @@ static const auth_img_desc_t * const cot_desc[] = {
 	[TOS_FW_CONFIG_ID]			=	&tos_fw_config,
 	[NON_TRUSTED_FW_CONTENT_CERT_ID]	=	&non_trusted_fw_content_cert,
 	[BL33_IMAGE_ID]				=	&bl33_image,
+	[BL33_EXTRA1_IMAGE_ID]			=	&bl33_extra1_image,
 	[NT_FW_CONFIG_ID]			=	&nt_fw_config,
 #if defined(SPD_spmd)
 	[SIP_SP_CONTENT_CERT_ID]		=	&sip_sp_content_cert,

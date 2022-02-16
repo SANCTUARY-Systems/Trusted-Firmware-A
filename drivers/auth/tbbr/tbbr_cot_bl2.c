@@ -522,6 +522,13 @@ static const auth_img_desc_t non_trusted_fw_content_cert = {
 			}
 		},
 		[1] = {
+			.type_desc = &nt_world_bl_extra1_hash,
+			.data = {
+				.ptr = (void *)nt_world_bl_extra1_hash_buf,
+				.len = (unsigned int)HASH_DER_LEN
+			}
+		},
+		[2] = {
 			.type_desc = &nt_fw_config_hash,
 			.data = {
 				.ptr = (void *)nt_fw_config_hash_buf,

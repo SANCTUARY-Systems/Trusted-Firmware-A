@@ -266,9 +266,9 @@ struct plat_io_policy policies[MAX_NUMBER_IDS] = {
 #ifdef IMAGE_BL2
 
 #if TRUSTED_BOARD_BOOT
-#define FCONF_ARM_IO_UUID_NUMBER	U(21)
+#define FCONF_ARM_IO_UUID_NUMBER	U(22)
 #else
-#define FCONF_ARM_IO_UUID_NUMBER	U(10)
+#define FCONF_ARM_IO_UUID_NUMBER	U(11)
 #endif
 
 static io_uuid_spec_t fconf_arm_uuids[FCONF_ARM_IO_UUID_NUMBER];
